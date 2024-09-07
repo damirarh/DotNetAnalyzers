@@ -20,6 +20,16 @@ public class LoggingTests
     [TestCase("NTK")]
     public void LogMessage(string name)
     {
-        logger.LogInformation($"Hello, world from {name}!");
+        logger.HelloWorld(name);
     }
+}
+
+public static partial class LoggerExtensions
+{
+    [LoggerMessage(
+        EventId = 1,
+        Level = LogLevel.Information,
+        Message = "Hello, world from {Name}!"
+    )]
+    public static partial void HelloWorld(this ILogger logger, string name);
 }
